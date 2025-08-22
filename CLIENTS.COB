@@ -1,11 +1,17 @@
+       IDENTIFICATION            DIVISION.
        PROGRAM-ID. CLIENTS.
        ENVIRONMENT             DIVISION.
        DATA                    DIVISION.
        WORKING-STORAGE         SECTION.
+       SPECIAL-NAMES.
+           DECIMAL-POINT       IS COMMA.
 
 
+       DATA                    DIVISION.
+       WORKING-STORAGE         SECTION.
        01 WRK-NOME             PICTURE X(20) VALUE SPACES.
        01 WRK-SALDO            PICTURE S9(05) VALUE ZEROS.
+       01 WRK-SALDO-ED         PICTURE ZZZZ9.
 
        PROCEDURE               DIVISION.
            DISPLAY "DIGITE SEU NOME "
