@@ -1,42 +1,50 @@
-       IDENTIFICATION            DIVISION.
+       IDENTIFICATION DIVISION.
        PROGRAM-ID. CLIENTS.
-       ENVIRONMENT             DIVISION.
-       DATA                    DIVISION.
-       WORKING-STORAGE         SECTION.
+
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
        SPECIAL-NAMES.
-           DECIMAL-POINT       IS COMMA.
+           DECIMAL-POINT IS COMMA.
 
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 WRK-NOME        PIC X(20) VALUE SPACES.
+       01 WRK-SALDO       PIC S9(10) COMP VALUE ZEROS.
+       01 WRK-SALDO-ED    PIC Z(9)9,99.
 
-       DATA                    DIVISION.
-       WORKING-STORAGE         SECTION.
-       01 WRK-NOME             PICTURE X(20) VALUE SPACES.
-       01 WRK-SALDO            PICTURE S9(05) VALUE ZEROS.
-       01 WRK-SALDO-ED         PICTURE ZZZZ9.
+       PROCEDURE DIVISION.
+           DISPLAY "DIGITE SEU NOME: "
+           ACCEPT WRK-NOME.
 
-       PROCEDURE               DIVISION.
-           DISPLAY "DIGITE SEU NOME "
-              ACCEPT WRK-NOME.
-           DISPLAY "DIGITE SEU SALDO"
-              ACCEPT WRK-SALDO.
-           
+           DISPLAY "DIGITE SEU SALDO: "
+           ACCEPT WRK-SALDO.
+
            ADD 500 TO WRK-SALDO
-           DISPLAY WRK-NOME WRK-SALDO.
-           DISPLAY "SALDO: " WRK-SALDO
-           DISPLAY "-------------------".
-           
-           SUBTRACT 200 FROM WRK-SALDO 
-           DISPLAY WRK-NOME WRK-SALDO.
-           DISPLAY "SALDO: " WRK-SALDO
+           MOVE WRK-SALDO TO WRK-SALDO-ED
+           DISPLAY WRK-NOME
+           DISPLAY "SALDO: " WRK-SALDO-ED
            DISPLAY "-------------------".
 
-           MULTIPLY WRK-SALDO BY 2 GIVING WRK-SALDO.
-           DISPLAY WRK-NOME WRK-SALDO.
-           DISPLAY "SALDO " WRK-SALDO.
+           SUBTRACT 200 FROM WRK-SALDO
+           MOVE WRK-SALDO TO WRK-SALDO-ED
+           DISPLAY WRK-NOME
+           DISPLAY "SALDO: " WRK-SALDO-ED
            DISPLAY "-------------------".
 
-           DIVIDE WRK-SALDO BY 3 GIVING WRK-SALDO.
-           DISPLAY WRK-NOME WRK-SALDO.
-           DISPLAY "SALDO " WRK-SALDO.
+           MULTIPLY WRK-SALDO BY 2 GIVING WRK-SALDO
+           MOVE WRK-SALDO TO WRK-SALDO-ED
+           DISPLAY WRK-NOME
+           DISPLAY "SALDO: " WRK-SALDO-ED
            DISPLAY "-------------------".
 
-           STOP  RUN.
+           DIVIDE WRK-SALDO BY 3 GIVING WRK-SALDO
+           MOVE WRK-SALDO TO WRK-SALDO-ED
+           DISPLAY WRK-NOME
+           DISPLAY "SALDO: " WRK-SALDO-ED
+           DISPLAY "-------------------".
+
+           COMPUTE WRK-SALDO = WRK-SALDO * 1,10
+           MOVE WRK-SALDO TO WRK-SALDO-ED
+           DISPLAY "SALDO COM JUROS: " WRK-SALDO-ED
+
+           STOP RUN.
