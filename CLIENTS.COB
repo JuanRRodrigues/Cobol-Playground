@@ -11,6 +11,7 @@
        01 WRK-NOME        PIC X(20) VALUE SPACES.
        01 WRK-SALDO       PIC S9(10) COMP VALUE ZEROS.
        01 WRK-SALDO-ED    PIC Z(9)9,99.
+       01 WRK-TIPO-CONTA  PIC 9 VALUE 0.
 
        PROCEDURE DIVISION.
            DISPLAY "DIGITE SEU NOME: "
@@ -18,6 +19,20 @@
 
            DISPLAY "DIGITE SEU SALDO: "
            ACCEPT WRK-SALDO.
+
+           DISPLAY "CONTA 1-Santander 2-Itau 3-Bradesco"
+           ACCEPT WRK-TIPO-CONTA.
+           EVALUATE WRK-TIPO-CONTA
+               WHEN 1
+                   DISPLAY "CONTA SANTANDER"
+                WHEN 2
+                   DISPLAY "CONTA ITAU"
+                WHEN 3
+                   DISPLAY "CONTA BRADESCO"
+                WHEN OTHER
+                   DISPLAY "CONTA INVALIDA" 
+           END-EVALUATE
+
        
            IF WRK-SALDO GREATER THAN OR equal 5000
                 DISPLAY WRK-NOME 
