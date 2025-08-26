@@ -18,7 +18,7 @@
 
        0100-PRINCIPAL    SECTION.
              PERFORM 0200-INICIAR  
-             PERFORM 0300-PROCESSAR.
+             PERFORM 0300-PROCESSAR UNTIL WRK-TIPO-CONTA EQUAL 9.
              PERFORM 0400-FINALIZAR
       
            STOP RUN.
@@ -89,6 +89,8 @@
                 COMPUTE WRK-SALDO = WRK-SALDO * 1,10
                 MOVE WRK-SALDO TO WRK-SALDO-ED
                 DISPLAY "SALDO COM JUROS: " WRK-SALDO-ED
+
+                PERFORM 0200-INICIAR
            ELSE
                 DISPLAY "SALDO nao compativel"
            END-IF.
