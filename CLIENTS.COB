@@ -14,6 +14,19 @@
        01 WRK-TIPO-CONTA  PIC 9 VALUE 0.
 
        PROCEDURE DIVISION.
+
+
+       0100-PRINCIPAL    SECTION.
+             PERFORM 0200-INICIAR  
+             PERFORM 0300-PROCESSAR.
+             PERFORM 0400-FINALIZAR
+      
+           STOP RUN.
+       0100-FIM. EXIT.
+
+
+       0200-INICIAR      SECTION.
+      *-------------------------- INICIAR
            DISPLAY "DIGITE SEU NOME: "
            ACCEPT WRK-NOME.
 
@@ -22,7 +35,16 @@
 
            DISPLAY "CONTA 1-Santander 2-Itau 3-Bradesco"
            ACCEPT WRK-TIPO-CONTA.
-           EVALUATE WRK-TIPO-CONTA
+
+
+           
+       0200-FIM. EXIT.
+
+      *-------------------------- PROCESSAR
+
+       0300-PROCESSAR    SECTION.
+
+          EVALUATE WRK-TIPO-CONTA
                WHEN 1
                    DISPLAY "CONTA SANTANDER"
                 WHEN 2
@@ -34,7 +56,8 @@
            END-EVALUATE
 
        
-           IF WRK-SALDO GREATER THAN OR equal 5000
+           IF WRK-SALDO GREATER THAN OR equal 5000 And 
+                (WRK-TIPO-CONTA EQUAL 1 OR WRK-TIPO-CONTA EQUAL 2)
                 DISPLAY WRK-NOME 
                 MOVE WRK-SALDO TO WRK-SALDO-ED
                 DISPLAY "SALDO: " WRK-SALDO-ED
@@ -70,4 +93,17 @@
                 DISPLAY "SALDO nao compativel"
            END-IF.
 
-           STOP RUN.
+
+       0300-FIM. EXIT.
+
+      *-------------------------- FINALIZAR
+       0400-FINALIZAR   SECTION.
+           DISPLAY "---------------------------".
+           DISPLAY "--- FIM DO PROGRAMA ---".
+
+       0400-FIM. EXIT.
+           
+
+           
+
+       
