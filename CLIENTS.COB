@@ -8,17 +8,28 @@
 
        DATA DIVISION.
        WORKING-STORAGE SECTION.
-       01 WRK-NOME        PIC X(20) VALUE SPACES.
-       01 WRK-SALDO       PIC S9(10) COMP VALUE ZEROS.
-       01 WRK-SALDO-ED    PIC Z(9)9,99.
-       01 WRK-TIPO-CONTA  PIC 9 VALUE 0.
+       01 REGISTRO.        
+           05 REG-AGENCIA         PICTURE X(04).
+           05 REG-CONTA           PICTURE X(05).
+           05 REG-NOME            PICTURE X(30).
+           05 REG-GERENTE         PICTURE X(03).
+           05 REG-TIPO-CONTA      PICTURE X(01).
+           05 REG-SALDO           PICTURE X(10)V99.
+
+
+
+
+
+
+           01 WRK-CONTADOR        PICTURE 9(03) USAGE COMP.
+
 
        PROCEDURE DIVISION.
 
 
        0100-PRINCIPAL    SECTION.
              PERFORM 0200-INICIAR  
-             PERFORM 0300-PROCESSAR UNTIL WRK-TIPO-CONTA EQUAL 9.
+             PERFORM 0300-PROCESSAR 
              PERFORM 0400-FINALIZAR
       
            STOP RUN.
@@ -28,13 +39,15 @@
        0200-INICIAR      SECTION.
       *-------------------------- INICIAR
            DISPLAY "DIGITE SEU NOME: "
-           ACCEPT WRK-NOME.
-
-           DISPLAY "DIGITE SEU SALDO: "
-           ACCEPT WRK-SALDO.
+           ACCEPT REG-NOME.
 
            DISPLAY "CONTA 1-Santander 2-Itau 3-Bradesco"
-           ACCEPT WRK-TIPO-CONTA.
+           ACCEPT REG-TIPO-CONTA.
+
+           DISPLAY "DIGITE SEU SALDO: "
+           ACCEPT REG-SALDO.
+
+           DISPLAY "============================"
 
 
            
@@ -44,7 +57,7 @@
 
        0300-PROCESSAR    SECTION.
 
-          EVALUATE WRK-TIPO-CONTA
+          EVALUATE REG-TIPO-CONTA
                WHEN 1
                    DISPLAY "CONTA SANTANDER"
                 WHEN 2
@@ -56,39 +69,39 @@
            END-EVALUATE
 
        
-           IF WRK-SALDO GREATER THAN OR equal 5000 And 
-                (WRK-TIPO-CONTA EQUAL 1 OR WRK-TIPO-CONTA EQUAL 2)
-                DISPLAY WRK-NOME 
-                MOVE WRK-SALDO TO WRK-SALDO-ED
-                DISPLAY "SALDO: " WRK-SALDO-ED
+           IF REG-SALDO GREATER THAN OR equal 5000 And 
+                (REG-TIPO-CONTA EQUAL 1 OR REG-TIPO-CONTA EQUAL 2)
+                DISPLAY REG-NOME 
+                MOVE REG-SALDO TO REG-SALDO-ED
+                DISPLAY "SALDO: " REG-SALDO-ED
 
                 ADD 500 TO WRK-SALDO
-                MOVE WRK-SALDO TO WRK-SALDO-ED
-                DISPLAY WRK-NOME
-                DISPLAY "SALDO: " WRK-SALDO-ED
+                MOVE REG-SALDO TO REG-SALDO-ED
+                DISPLAY REG-NOME
+                DISPLAY "SALDO: " REG-SALDO-ED
                 DISPLAY "-------------------"
 
-                SUBTRACT 200 FROM WRK-SALDO
-                MOVE WRK-SALDO TO WRK-SALDO-ED
-                DISPLAY WRK-NOME
-                DISPLAY "SALDO: " WRK-SALDO-ED
+                SUBTRACT 200 FROM REG-SALDO
+                MOVE REG-SALDO TO REG-SALDO-ED
+                DISPLAY REG-NOME
+                DISPLAY "SALDO: " REG-SALDO-ED
                 DISPLAY "-------------------"
 
-                MULTIPLY WRK-SALDO BY 2 GIVING WRK-SALDO
-                MOVE WRK-SALDO TO WRK-SALDO-ED
-                DISPLAY WRK-NOME
-                DISPLAY "SALDO: " WRK-SALDO-ED
+                MULTIPLY REG-SALDO BY 2 GIVING REG-SALDO
+                MOVE REG-SALDO TO REG-SALDO-ED
+                DISPLAY REG-NOME
+                DISPLAY "SALDO: " REG-SALDO-ED
                 DISPLAY "-------------------"
 
-                DIVIDE WRK-SALDO BY 3 GIVING WRK-SALDO
-                MOVE WRK-SALDO TO WRK-SALDO-ED
-                DISPLAY WRK-NOME
-                DISPLAY "SALDO: " WRK-SALDO-ED
+                DIVIDE REG-SALDO BY 3 GIVING REG-SALDO
+                MOVE REG-SALDO TO REG-SALDO-ED
+                DISPLAY REG-NOME
+                DISPLAY "SALDO: " REG-SALDO-ED
                 DISPLAY "-------------------"
 
-                COMPUTE WRK-SALDO = WRK-SALDO * 1,10
-                MOVE WRK-SALDO TO WRK-SALDO-ED
-                DISPLAY "SALDO COM JUROS: " WRK-SALDO-ED
+                COMPUTE REG-SALDO = REG-SALDO * 1,10
+                MOVE REG-SALDO TO REG-SALDO-ED
+                DISPLAY "SALDO COM JUROS: " REG-SALDO-ED
 
                 PERFORM 0200-INICIAR
            ELSE
@@ -101,6 +114,7 @@
       *-------------------------- FINALIZAR
        0400-FINALIZAR   SECTION.
            DISPLAY "---------------------------".
+           DISPLAY REGISTRO
            DISPLAY "--- FIM DO PROGRAMA ---".
 
        0400-FIM. EXIT.
