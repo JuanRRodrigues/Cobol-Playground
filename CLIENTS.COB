@@ -5,6 +5,9 @@
        CONFIGURATION SECTION.
        SPECIAL-NAMES.
            DECIMAL-POINT IS COMMA.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT ARQ-CLIENTES ASSIGN TO 'INARQCLI.TXT'
 
        DATA DIVISION.
        WORKING-STORAGE SECTION.
@@ -15,12 +18,6 @@
            05 REG-GERENTE         PICTURE X(03).
            05 REG-TIPO-CONTA      PICTURE X(01).
            05 REG-SALDO           PICTURE X(10)V99.
-
-
-
-
-
-
            01 WRK-CONTADOR        PICTURE 9(03) USAGE COMP.
 
 
