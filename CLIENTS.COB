@@ -29,14 +29,8 @@
 
        FD ARQ-CLIENTES
               RECORDING MODE IS F.   *> Arquivo de registros fixos
-
-       01 REGISTRO.        
-           05 REG-AGENCIA         PIC X(04).
-           05 REG-CONTA           PIC X(05).
-           05 REG-NOME            PIC X(30).
-           05 REG-GERENTE         PIC X(03).
-           05 REG-TIPO-CONTA      PIC 9(01).
-           05 REG-SALDO           PIC 9(10)V99.
+           COPY "BOOKCLI".
+       
 
        WORKING-STORAGE SECTION.
        01 FS-INARCLI             PIC 9(02).          *> Status do arquivo
