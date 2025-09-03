@@ -1,0 +1,18 @@
+       IDENTIFICATION DIVISION.
+         PROGRAM-ID. SUPRIME-ZEROS.
+
+         DATA DIVISION.
+         WORKING-STORAGE SECTION.
+
+            01 VALOR-ORIGINAL      PIC 9(5)V99.
+            01 VALOR-FORMATADO     PIC Z(5)9.99.
+
+            PROCEDURE DIVISION.
+
+                MOVE 00235.40 TO VALOR-ORIGINAL
+
+                MOVE VALOR-ORIGINAL TO VALOR-FORMATADO
+    
+                DISPLAY "VALOR FORMATADO: " VALOR-FORMATADO
+    
+                STOP RUN.
