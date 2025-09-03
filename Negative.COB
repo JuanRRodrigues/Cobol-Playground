@@ -1,0 +1,18 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. NEGATIVE.
+
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+
+       01 WS-VALOR     PIC S9(4)V99.
+       01 WS-VALOR-ED  PIC +Z(4).99.
+
+       PROCEDURE DIVISION.
+
+              MOVE -1234.56 TO WS-VALOR
+              MOVE WS-VALOR TO WS-VALOR-ED
+    
+              DISPLAY "VALOR: " WS-VALOR-ED
+    
+              STOP RUN.
