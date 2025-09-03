@@ -1,0 +1,26 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. COPY-EMPLOYER.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+
+       01 CLIENTE-ORIGEM.
+              05 NOME         PIC A(20).
+              05 IDADE        PIC 9(02).
+
+       01 CLIENTE-DESTINO.
+              05 NOME         PIC A(20).
+              05 IDADE        PIC 9(02).
+
+         PROCEDURE DIVISION.
+
+             MOVE "ANA" TO NOME OF CLIENTE-ORIGEM.
+             MOVE 32 TO IDADE OF CLIENTE-ORIGEM.
+
+             MOVE CORRESPONDING CLIENTE-ORIGEM TO CLIENTE-DESTINO.
+
+             DISPLAY "Nome:"  NOME  OF CLIENTE-DESTINO.
+             DISPLAY "Idade:" IDADE OF CLIENTE-DESTINO.
+
+            STOP RUN.
+
